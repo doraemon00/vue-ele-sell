@@ -28,10 +28,11 @@
     <div class="background">
       <img :src="seller.avatar" width="100%" height="100%" />
     </div>
-    <div v-show="detailShow" class="detail" @click="closeDetail"> 
+    <div v-show="detailShow" class="detail" @click="closeDetail">
       <div class="detail-wrapper clearfix">
         <div class="detail-main">
           <h1 class="name">{{seller.name}}</h1>
+          <star :size="48" :score="seller.score"></star>
         </div>
       </div>
       <div class="detail-close">
@@ -41,32 +42,37 @@
   </div>
 </template>
 <script>
+import star from "components/star/star";
+
 export default {
   props: {
     seller: {
       type: Object
     }
   },
-  data(){
+  data() {
     return {
-      detailShow:false
-    }
+      detailShow: false
+    };
   },
-  methods:{
-    showDetail(){
-      this.detailShow = true
+  methods: {
+    showDetail() {
+      this.detailShow = true;
     },
-    closeDetail(){
-      this.detailShow = false
+    closeDetail() {
+      this.detailShow = false;
     }
   },
   created() {
     this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
+  },
+  components:{
+    star
   }
 };
 </script>
 <style lang="stylus"  rel="stylesheet/stylus">
-@import '../../common/stylus/mixin.styl'
+@import '../../common/stylus/mixin'
 .header
   position: relative
   overflow: hidden
@@ -181,32 +187,30 @@ export default {
     z-index: -1
     filter: blur(10px)
   .detail
-    position fixed
-    z-index 100
-    top 0
-    left 0
-    width 100%
-    height 100%
-    overflow auto
-    background rgba(7,17,27,0.8)
+    position: fixed
+    z-index: 100
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    background: rgba(7, 17, 27, 0.8)
     .detail-wrapper
-      width 100%
-      min-height 100%
+      width: 100%
+      min-height: 100%
       .detail-main
-        margin-top 61px
-        padding-bottom 64px
+        margin-top: 61px
+        padding-bottom: 64px
         .name
-          line-height 16px
-          text-align center
-          font-size 16px
-          font-weight 700
+          line-height: 16px
+          text-align: center
+          font-size: 16px
+          font-weight: 700
     .detail-close
-      position relative
-      width 32px
-      height 32px
-      margin -64px auto 0 auto
-      clear both
-      font-size 32px
-
-
+      position: relative
+      width: 32px
+      height: 32px
+      margin: -64px auto 0 auto
+      clear: both
+      font-size: 32px
 </style>
