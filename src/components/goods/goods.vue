@@ -139,6 +139,7 @@ export default {
       }
     },
     addFood(target) {
+        // console.log(target)
         this._drop(target);
       },
   },
