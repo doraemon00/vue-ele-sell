@@ -80,4 +80,5 @@ export default {
     line-height: 24px
     font-size: 24px
     color: rgb(0, 160, 220)
+  
 </style>
