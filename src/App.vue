@@ -12,25 +12,33 @@
         <router-link to="/seller">商家</router-link>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+      <router-view :seller="seller"></router-view>
   </div>
 </template>
 
 <script>
-import header from "./components/header/header";
+import header from "components/header/header";
+import { urlParse } from "common/js/util";
 
 const ERR_OK = 0;
 export default {
   data() {
     return {
-      seller: {}
+      seller: {
+        id: (() => {
+          let queryParam = urlParse();
+          return queryParam.id;
+        })()
+      }
     };
   },
   created() {
-    this.$http.get("/api/seller").then(res => {
+    this.$http.get("/api/seller?id=" + this.seller.id).then(res => {
       if (res.data.errno === ERR_OK) {
         console.log(res);
-        this.seller = res.data.data;
+        // this.seller = res.data.data;
+        this.seller = Object.assign({}, this.seller, res.data.data);
+        console.log(this.seller.id);
       }
     });
   },
