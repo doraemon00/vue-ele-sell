@@ -11,8 +11,7 @@
             @click="selectMenu(index)"
           >
             <span class="text border-1px">
-              <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>
-              {{item.name}}
+              <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
             </span>
           </li>
         </ul>
@@ -109,15 +108,15 @@ export default {
   created() {
     this.classMap = ["decrease", "discount", "special", "invoice", "guarantee"];
 
-    this.$http.get("/api/goods").then(res => {
-      if (res.data.errno === ERR_OK) {
+    this.$http.get("http://rap2.taobao.org:38080/app/mock/247115/api/ele").then(res => {
+      // if (res.data.errno === ERR_OK) {
         console.log(res);
-        this.goods = res.data.data;
+        this.goods = res.data.goods;
         this.$nextTick(() => {
           this._initScroll();
           this._calculateHeight();
         });
-      }
+      // }
     });
   },
   methods: {

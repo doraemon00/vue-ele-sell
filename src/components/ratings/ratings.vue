@@ -93,16 +93,17 @@ export default {
     };
   },
   created() {
-    this.$http.get("/api/ratings").then(res => {
-      if (res.data.errno === ERR_OK) {
-        this.ratings = res.data.data;
+    this.$http.get("http://rap2.taobao.org:38080/app/mock/247115/api/ele").then(res => {
+      // if (res.data.errno === ERR_OK) {
+        // this.ratings = res.data.data;
+        this.ratings = res.data.ratings;
         console.log(res);
         this.$nextTick(() => {
           this.scroll = new BScroll(this.$refs.ratings, {
             click: true
           });
         });
-      }
+      // }
     });
   },
   methods:{
