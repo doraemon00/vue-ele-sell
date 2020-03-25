@@ -11,7 +11,7 @@
             @click="selectMenu(index)"
           >
             <span class="text border-1px">
-              <span v-show="item.type>0" class="icon" :class="classMap[item.type]"></span>{{item.name}}
+              <span v-if="item.type>0&&item.type<2" class="icon" :class="classMap[item.type]"></span>{{item.name}}
             </span>
           </li>
         </ul>
